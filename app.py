@@ -17,14 +17,21 @@ max_items_in_page = 3
 def clr():
     os.system("clear")
 
+def hotkey(key: str, desc: str, key_style="black on white", desc_style=""):
+    text = Text.assemble(
+        (" " + key + " ", key_style),
+        (" " + desc, desc_style)
+    )
+    return text
+
 def main_menu():
     while True:
         clr()
-        console.print("[bold cyan][1]VIEW BILLS")
-        console.print("[bold green][2]ADD BILL")
-        console.print("[bold red][[q]]EXIT")
+        console.print("[cyan][1]VIEW BILLS[/cyan]")
+        console.print("[green][2]ADD BILL[/green]")
+        console.print("[red][Q]EXIT[/red]")
 
-        key = readchar.readkey()
+        key = readchar.readkey().lower()
         if key == "1":
             view_bills()
         elif key == "2":
@@ -53,23 +60,21 @@ def view_bills():
         bills_in_page = pagify(bills, page_index, max_items_in_page)
 
         table = get_bill_table(bills_in_page, len(bills))
+        amount_of_pages = math.ceil(len(bills) / max_items_in_page)-1
         console.print(table)
         print_table_bindings()
 
-        key = readchar.readkey()
-        
-        amount_of_pages = math.ceil(len(bills) / max_items_in_page)
+        key = readchar.readkey().lower()
 
-        if key == readchar.key.RIGHT: 
+        if key == "l": 
             page_index += 1
             if page_index > amount_of_pages:
                 page_index = 0
 
-        elif key == readchar.key.LEFT: 
+        elif key == "j": 
             page_index -=1 
             if page_index < 0:
-                page_index = amount_of_pages-1
-
+                page_index = amount_of_pages
 
         elif key == "f":
             if show_all_bills: show_all_bills = False
@@ -86,6 +91,7 @@ def view_bills():
 
         elif key.isdigit():
             i = int(key)
+            if i > len(bills_in_page)-1: continue 
             selected_bill = bills_in_page[i]
             select_bill(selected_bill)
 
@@ -116,12 +122,13 @@ def get_bill_table(bills, total_bill_count):
     return table
 
 def print_table_bindings():
-    console.print(f"\n\nLast Page / Next Page [<-/->]")
+    console.print(f"\n\nLast Page / Next Page [J/L]")
     if show_all_bills:
         console.print("Show Unpaid Bills [F]")
     else:
         console.print("Show All Bills [F]")
-    console.print("Mark All As Unpaid[R]") 
+    console.print("Mark All As Unpaid [R]") 
+    console.print("Main Menu [Q]")
 
 def select_bill(bill):
     while True:
@@ -134,7 +141,7 @@ def select_bill(bill):
         console.print(f"[yellow][2]Edit Bill[/yellow]")
         console.print(f"[cyan][3]Open Website[/cyan]")
         console.print(f"[red][4]Delete[/red]")
-        console.print(f"[q]Back")
+        console.print(f"[Q]Back")
         key = readchar.readkey()
 
         if key == "1":
@@ -170,7 +177,7 @@ def edit_bill(bill):
         console.print("[2]Amount")
         console.print("[3]Due Date")
         console.print("[4]Website")
-        console.print("[q]Back")
+        console.print("[Q]Back")
         key = readchar.readkey()
 
         if key == "q":

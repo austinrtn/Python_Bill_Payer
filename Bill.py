@@ -2,7 +2,7 @@ import uuid
 import time
 import webbrowser
 import os 
-import json 
+import json
 
 filename = "bill_data.json"
 
@@ -15,17 +15,21 @@ class Bill:
     @staticmethod
     def get_all_bills():
         bills = []
-        if os.path.exists(filename):
-            with open(filename, "r") as f: 
-                try: 
-                    bill_data = json.load(f)
-                    for data in bill_data:
-                        bills.append(Bill.json_to_bill(data))
 
-                except json.JSONDecodeError:
-                    bills = []
+        if not os.path.exists(filename):
+            with open(filename, "w") as f:
+                json.dump([], f)
 
-                return bills
+        with open(filename, "r") as f: 
+            try: 
+                bill_data = json.load(f)
+                for data in bill_data:
+                    bills.append(Bill.json_to_bill(data))
+
+            except json.JSONDecodeError:
+                bills = []
+
+            return bills
                 
     @staticmethod
     def get_unpaid_bills():

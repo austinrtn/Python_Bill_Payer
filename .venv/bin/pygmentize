@@ -1,4 +1,4 @@
-#!/home/dogmatic_polack/Documents/bill_payer/.venv/bin/python3
+#!/home/austinkolo/Documents/bill_payer/.venv/bin/python3.13
 # -*- coding: utf-8 -*-
 import re
 import sys
