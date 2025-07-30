@@ -1,0 +1,42 @@
+[
+  {
+    "name": "att",
+    "amount": 140.0,
+    "due_date": "03",
+    "website": "www.att.com",
+    "paid": false,
+    "uid": "aa477e11-553f-47c0-ad47-56d298943cf5"
+  },
+  {
+    "name": "Rent",
+    "amount": 1100.0,
+    "due_date": "001",
+    "website": "www.trilogy.com",
+    "paid": false,
+    "uid": "c43e20e5-fb46-4869-a1ca-670366158606"
+  },
+  {
+    "name": "Jimmy john",
+    "amount": 69.0,
+    "due_date": "05",
+    "website": "www.jj.com",
+    "paid": false,
+    "uid": "b46a90fa-f64b-4ebf-a928-55920012cca7"
+  },
+  {
+    "name": "Ice Murder",
+    "amount": 10000.0,
+    "due_date": "001",
+    "website": "www.fuckice.org",
+    "paid": false,
+    "uid": "0f0d9b53-9257-401d-8b8b-5bc41db7c94c"
+  },
+  {
+    "name": "spankbank",
+    "amount": 6969696.0,
+    "due_date": "31",
+    "website": "www.spankbang.org",
+    "paid": false,
+    "uid": "7f6f6710-b2a4-43d0-bb65-d267b4df1ac4"
+  }
+]
