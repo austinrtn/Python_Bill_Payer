@@ -16,27 +16,27 @@
     "uid": "c43e20e5-fb46-4869-a1ca-670366158606"
   },
   {
-    "name": "Jimmy john",
-    "amount": 69.0,
-    "due_date": "05",
-    "website": "www.jj.com",
-    "paid": false,
-    "uid": "b46a90fa-f64b-4ebf-a928-55920012cca7"
-  },
-  {
-    "name": "Ice Murder",
-    "amount": 10000.0,
-    "due_date": "001",
-    "website": "www.fuckice.org",
-    "paid": false,
-    "uid": "0f0d9b53-9257-401d-8b8b-5bc41db7c94c"
-  },
-  {
     "name": "spankbank",
     "amount": 6969696.0,
     "due_date": "31",
     "website": "www.spankbang.org",
     "paid": false,
     "uid": "7f6f6710-b2a4-43d0-bb65-d267b4df1ac4"
+  },
+  {
+    "name": "jorkco",
+    "amount": 123.0,
+    "due_date": "23",
+    "website": "www.jorkco.com",
+    "paid": false,
+    "uid": "748334d2-d211-479b-837f-24e3f0d6922e"
+  },
+  {
+    "name": "DTE",
+    "amount": 100.0,
+    "due_date": "001",
+    "website": "https://www.dte.com",
+    "paid": false,
+    "uid": "e98d0a3b-d270-4b69-8a36-6b9a1cf0f8a9"
   }
 ]
