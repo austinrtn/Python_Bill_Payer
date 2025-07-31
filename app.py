@@ -12,7 +12,7 @@ filename = "bill_data.json"
 console = Console()
 show_all_bills = False
 page_index = 0
-max_items_in_page = 3
+max_items_in_page = 9
 
 def clr():
     os.system("clear")
@@ -27,9 +27,10 @@ def hotkey(key: str, desc: str, key_style="black on white", desc_style=""):
 def main_menu():
     while True:
         clr()
-        console.print("[cyan][1]VIEW BILLS[/cyan]")
-        console.print("[green][2]ADD BILL[/green]")
-        console.print("[red][Q]EXIT[/red]")
+        console.print("[b][grey]BILL MANAGER[/grey][/b]")
+        console.print("[b][cyan][1]VIEW BILLS[/cyan][/b]")
+        console.print("[b][green][2]ADD BILL[/green][/b]")
+        console.print("[b][red][Q]EXIT[/red][/b]")
 
         key = readchar.readkey().lower()
         if key == "1":
@@ -108,16 +109,20 @@ def get_bill_table(bills, total_bill_count):
     table.add_column("Name", style=col_color)
     table.add_column("Amount", style=col_color)
     table.add_column("Due", style=col_color)
+    table.add_column("Paid", style=col_color)
 
+    total_amount = 0
     for i, bill in enumerate(bills):
-        if bill.paid and not show_all_bills: continue
-        table.add_row(str(i), bill.name, str(bill.amount), str(bill.due_date))
+        table.add_row(str(i), bill.name, str(bill.amount), str(bill.due_date), str(bill.paid))
+        total_amount += bill.amount
+    table.add_row("", "[b][red]Total Amount[/red][/b]", "[b][red]" + str(total_amount) + "[/b][/red]", "", "")
 
     num_cols = len(table.columns)
     if num_cols > max_items_in_page: 
         empty_row = [""] * num_cols
         for _ in range(max_items_in_page - len(bills)):
             table.add_row(*empty_row)
+
     
     return table
 
@@ -247,11 +252,11 @@ def add_bill():
         website = input().strip()
         clr()
 
-        console.print("Does this look correct? [bold green]Y[/bold green]/[bold red]N[/bold red]")
         console.print(f"Name: [bold]{name}[/bold]")
         console.print(f"Amount: [bold]{amount}[/bold]")
         console.print(f"Due Date: [bold]{due_date}")
         console.print(f"Website: [bold]{website}[/bold]")
+        console.print("Does this look correct? [bold green]Y[/bold green]/[bold red]N[/bold red]")
 
         while True:
             key = readchar.readkey()
