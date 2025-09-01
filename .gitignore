@@ -1,5 +1,5 @@
 
 __pycache__/
 *.pyc
+*.json
 .venv/
-bill_data.json
