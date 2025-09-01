@@ -1,4 +1,5 @@
 import os 
+import sys
 import math
 import time
 import json
@@ -64,7 +65,7 @@ def view_bills():
         amount_of_pages = math.ceil(len(bills) / max_items_in_page)-1
         console.print(table)
         print_table_bindings()
-
+        console.print("\n[bold red]Remember not to overdraft[/bold red]")
         key = readchar.readkey().lower()
 
         if key == "l": 
@@ -113,7 +114,9 @@ def get_bill_table(bills, total_bill_count):
 
     total_amount = 0
     for i, bill in enumerate(bills):
-        table.add_row(str(i), bill.name, str(bill.amount), str(bill.due_date), str(bill.paid))
+        if bill.paid: paid = "✅ " 
+        else: paid = "❌ "
+        table.add_row(str(i), bill.name, str(bill.amount), str(bill.due_date), paid)
         total_amount += bill.amount
     table.add_row("", "[b][red]Total Amount[/red][/b]", "[b][red]" + str(total_amount) + "[/b][/red]", "", "")
 
@@ -154,7 +157,7 @@ def select_bill(bill):
                 bill.paid = False
             else: bill.paid = True
             Bill.edit_bill(bill)
-            console.print("[green]Bill marked as paid![/green]")
+            break
         elif key == "2":
             edit_bill(bill)
         elif key == "3":
@@ -199,7 +202,7 @@ def edit_bill(bill):
             try: 
                 value = float(value)
                 bill.amount =  value   
-            except VallueError:
+            except ValueError:
                 console.print("[bold red]Error: Non-numeric value entered.[/bold red]")
                 readchar.readkey()
 
@@ -281,5 +284,15 @@ def format_date(date):
         console.print("[bold red]Error:Inccorect data entered.[/bold red]") 
         return None 
 
+def exit_program():
+    print("Thank you come again :3")
+    sys.exit()
+
 if __name__ == "__main__":
-    main_menu()
+    try: 
+        main_menu()
+    except KeyboardInterrupt:
+        exit_program()
+    exit_program()
+
+
